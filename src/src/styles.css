@@ -1,0 +1,49 @@
+/* You can add global styles to this file, and also import other style files */
+/*@tailwind base;*/
+/*@tailwind components;*/
+/*@tailwind utilities;*/
+/*:host{*/
+/*  display: flex;*/
+/*  flex-direction: column;*/
+/*  !*align-items: center;*!*/
+/*  justify-content: center;*/
+/*  !*height: 100%;*!*/
+/*}*/
+button {
+  color: white;
+  background-color: #f0860d;
+}
+
+button:focus {
+  color: white;
+  background-color: #f0860d;
+}
+
+/*.form-check-input:hover {*/
+/*  color: white;*/
+/*  background-color: #f0860d;*/
+/*}*/
+
+.form-check-input[type="checkbox"]:checked {
+  color: white;
+  background-color: #f0860d;
+}
+
+/*.table {*/
+/*  background-color: #f0860d;*/
+/*  color: white;*/
+/*  position: absolute;*/
+/*  z-index: 9999;*/
+/*  right: 0;*/
+/*  opacity: 1;*/
+/*  border: 1px solid #000;*/
+/*}*/
+
+.tr-top {
+  background-color: #bd690a;
+  color: white;
+}
+.tr-bot {
+  background-color: #f0860d;
+  color: white;
+}

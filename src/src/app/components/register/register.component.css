@@ -1,0 +1,15 @@
+/*body {*/
+/*  background: #eee;*/
+/*  !*background: linear-gradient(to right, #0062E6, #33AEFF);*!*/
+/*}*/
+
+button {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}

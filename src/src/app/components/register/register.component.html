@@ -1,0 +1,39 @@
+<h1 class="font-bold mt-3 mb-4 text-center fw-light">{{ "Регистрация" | titlecase }}</h1>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+<!--          <h5 class="card-title text-center mb-5 fw-light fs-5">Регистрация</h5>-->
+          <form>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+              <label for="floatingInput">Никнейм</label>
+<!--              <small class="error-message" *ngIf="isInvalidUsername">Пользователя не существует! </small>-->
+<!--              <small class="error-message" *ngIf="isInvalidUsername">Некорректный никнейм! </small>-->
+              <small class="error-message" *ngIf="isInvalidUsername">Никнейм занят! </small>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingEmail" placeholder="name@example.com">
+              <label for="floatingInput">Электронная почта</label>
+<!--              <small class="error-message" *ngIf="isInvalidEmail">Некорректная электронная почта! </small>-->
+                            <small class="error-message" *ngIf="isInvalidEmail">Электронная почта уже используется! </small>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+              <label for="floatingPassword">Пароль</label>
+<!--              <small class="error-message" *ngIf="isInvalidPassword">Некорректный пароль! </small>-->
+<!--              <small class="error-message" *ngIf="isInvalidPassword">Никнейм занят! </small>-->
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-log text-uppercase fw-bold" type="submit">Зарегистрироваться</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>

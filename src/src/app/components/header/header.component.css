@@ -1,0 +1,33 @@
+.navigation {
+  --color: white
+}
+
+.navbar-brand, .navbar-nav, .nav-item, .container-fluid, .navbar {
+  background-color: #f0860d;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.nav-link {
+
+}
+
+/*.nav-link {*/
+/*  display: block;*/
+/*}*/
+
+@media screen and (max-width: 900px) {
+  .size {
+    display: none;
+  }
+  .bi {
+    font-size: 2em;;
+  }
+}
+
+.size {
+  text-decoration: none;
+  color: white;
+}

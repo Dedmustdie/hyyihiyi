@@ -1,0 +1,11 @@
+<h1 class="font-bold mt-3 mb-4 text-center fw-light">{{ title | titlecase }}</h1>
+
+<section class="py-5" style="background-color: #eee;">
+  <div class="container px-4 px-lg-5 mt-5">
+      <app-order
+        *ngFor="let order of orders$ | async"
+        [order]="order"
+        [products$]="products$">
+      </app-order>
+    </div>
+</section>

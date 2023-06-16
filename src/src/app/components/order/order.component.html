@@ -1,0 +1,76 @@
+<div class="row justify-content-center mb-3">
+
+<!--<div class="row justify-content-center mb-3" (mouseover)="toggleList()" (mouseout)="toggleList()">-->
+
+  <div class="col-md-12 col-xl-10">
+
+    <div class="card shadow-0 border rounded-3">
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <h5>Статус: {{ status }}</h5>
+            <div class="d-flex flex-row">
+              <div class="text-danger mb-1 me-2">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+            </div>
+            <div class="mt-1 mb-0 text-muted small">
+              Тип доставки: {{ deliveryType }}
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-3 col-xl-3 mb-4 mb-lg-0">
+          </div>
+          <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
+            <div class="d-flex flex-row align-items-center mb-1">
+              <h4 class="mb-1 me-1">{{ order.price | currency:'RUB ' }}</h4>
+            </div>
+            <button
+              class="border py-2 px-4 rounded text-center"
+              [ngClass]="{
+          'bg-yellow-400': !isListVisible,
+          'bg-blue-400': isListVisible
+        }"
+              (click)="isListVisible = !isListVisible">
+              {{ !isListVisible ? 'Показать товары' : 'Скрыть товары' }}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="overflow-x:hidden; overflow-x: scroll;" *ngIf="isListVisible">
+    <table class="table"  >
+      <thead>
+      <tr class="tr-top">
+        <th scope="col">Количество</th>
+        <th scope="col">Наименование</th>
+        <th scope="col">Суммарная cтоимость</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let orderProduct of orderProducts">
+        <ng-container *ngIf="orderProduct.product; else orderProductError">
+          <tr class="tr-bot">
+            <td>{{ orderProduct.count }}</td>
+            <td>{{ orderProduct.product.name }}</td>
+            <td>{{ orderProduct.totalSum | currency:'RUB ' }}</td>
+          </tr>
+        </ng-container>
+        <ng-template #orderProductError>
+          <tr class="tr-bot">
+            <td>{{ orderProduct.count }}</td>
+            <td>Ошибка!</td>
+            <td>Ошибка!</td>
+          </tr>
+        </ng-template>
+      </ng-container>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+</div>
+

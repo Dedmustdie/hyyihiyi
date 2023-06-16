@@ -1,0 +1,67 @@
+<h1 class="font-bold mt-3 mb-4 text-center fw-light">{{ "Авторизация" | titlecase }}</h1>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <form>
+            <div class="form-floating mb-3">
+              <input [(ngModel)]="username" name="username" class="form-control" id="floatingInput"
+                     placeholder="name@example.com">
+              <label for="floatingInput">Никнейм</label>
+              <small class="error-message" *ngIf="isInvalidUsername">Некорректный никнейм! </small>
+              <small class="error-message" *ngIf="isInvalidUsername">Никнейм занят! </small>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="password" [(ngModel)]="password" name="password" class="form-control" id="floatingPassword"
+                     placeholder="Password">
+              <label for="floatingPassword">Пароль</label>
+              <small class="error-message" *ngIf="isInvalidPassword">Некорректный пароль! </small>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" (click)="login()">Войти
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<h1 class="font-bold mt-3 mb-4 text-center fw-light">{{ "Авторизация" | titlecase }}</h1>
+
+<!--<body>-->
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">-->
+<!--      <div class="card border-0 shadow rounded-3 my-5">-->
+<!--        <div class="card-body p-4 p-sm-5">-->
+<!--          <form>-->
+<!--            <div class="form-floating mb-3">-->
+<!--              <input [(ngModel)]="username" name="username" class="form-control" id="floatingInput"-->
+<!--                     placeholder="name@example.com">-->
+<!--              <label for="floatingInput">Никнейм</label>-->
+<!--              &lt;!&ndash;              <small class="error-message" *ngIf="isInvalidUsername">Некорректный никнейм! </small>&ndash;&gt;-->
+<!--              <small class="error-message" *ngIf="isInvalidUsername">Пользователя не существует! </small>-->
+<!--            </div>-->
+<!--            <div class="form-floating mb-3">-->
+<!--              <input type="password" [(ngModel)]="password" class="form-control" id="floatingPassword" placeholder="Password">-->
+<!--              <label for="floatingPassword">Пароль</label>-->
+<!--              &lt;!&ndash;              <small class="error-message" *ngIf="isInvalidPassword">Некорректный пароль! </small>&ndash;&gt;-->
+<!--            </div>-->
+<!--            <div class="d-grid">-->
+<!--              <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit" (click)="login()">Войти-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--</body>-->
+
+

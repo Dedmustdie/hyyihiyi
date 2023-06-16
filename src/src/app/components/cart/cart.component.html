@@ -1,0 +1,41 @@
+<h1 class="font-bold mt-3 mb-4 text-center fw-light">{{ title | titlecase }}</h1>
+
+<section class="py-5" style="background-color: #eee;">
+  <div class="container px-4 px-lg-5 mt-5">
+    <div class="row">
+      <div class="col-md-3 mx-auto">
+        <form class="mb-5" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="orderType">Оформить заказ</label>
+            <select style="width: auto;" class="form-control" id="orderType" [(ngModel)]="deliveryType" name="orderType"
+                    required>
+              <option value="">Почта</option>
+              <option value="express">Экспресс доставка</option>
+              <option value="standard">Стандартная доставка</option>
+              <option value="pickup">Самовывоз</option>
+            </select>
+            <select style="width: auto;" class="form-control mt-3  mb-3" id="address" [(ngModel)]="deliveryAddress"
+                    name="orderType" required>
+              <option value="">Москва, Тверская 1, 654321</option>
+              <option value="express">Экспресс доставка</option>
+              <option value="standard">Стандартная доставка</option>
+              <option value="pickup">Самовывоз</option>
+            </select>
+            <h2>{{price | currency:'RUB '}}</h2>
+            <button type="submit" class="btn btn-primary">Оформить заказ</button>
+          </div>
+          <small class="error-message" *ngIf="isNotEnough">Выбранного товара нет в наличии в указанном количестве! </small>
+
+        </form>
+      </div>
+    </div>
+    <app-cart_item
+      *ngFor="let cartItem of cartItems$ | async"
+      [cartItem]="cartItem"
+      [products$]="products$"
+      (increasePrice)="increasePrice($event)"
+      (decreasePrice)="decreasePrice($event)"
+      [refreshCartItems]="refreshCartItems">
+    </app-cart_item>
+  </div>
+</section>

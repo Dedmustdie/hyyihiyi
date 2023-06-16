@@ -1,0 +1,10 @@
+
+button:disabled {
+  color: white;
+  background-color: #da9b53;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+}

@@ -1,0 +1,34 @@
+{
+  "/api/catalog": {
+    "target": "http://catalog:10000",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/catalog": ""
+    },
+    "changeOrigin": true
+  },
+  "/api/order": {
+    "target": "http://order:10001",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/order": ""
+    },
+    "changeOrigin": false
+  },
+  "/api/cart": {
+    "target": "http://cart:10004",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/cart": ""
+    },
+    "changeOrigin": false
+  },
+  "/api/auth": {
+    "target": "http://auth:10002",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/auth": ""
+    },
+    "changeOrigin": false
+  }
+}

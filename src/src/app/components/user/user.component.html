@@ -1,0 +1,38 @@
+<!-- This snippet uses Font Awesome 5 Free as a dependency. You can download it at fontawesome.io! -->
+<h1 class="font-bold mt-3 mb-4 text-center fw-light">{{ "Пользователь" | titlecase }}</h1>
+
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+      <div class="card border-0 shadow rounded-3 my-5">
+        <div class="card-body p-4 p-sm-5">
+          <!--          <h5 class="card-title text-center mb-5 fw-light fs-5">Выберете действие</h5>-->
+          <form *ngIf="!isAuth">
+            <div class="d-grid">
+              <button class="btn btn-primary btn-reg text-uppercase fw-bold mb-3" type="submit"
+                      [routerLink]="['/register']">Регистрация
+              </button>
+            </div>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-log text-uppercase fw-bold" type="submit" [routerLink]="['/auth']">
+                Авторизация
+
+              </button>
+            </div>
+          </form>
+          <form *ngIf="isAuth">
+            <h4 class="card-title text-center mb-2 fs-5">Kensein</h4>
+            <h5 class="card-title text-center mb-3 fw-light fs-5">artyomchurin@gmail.com</h5>
+            <div class="d-grid">
+              <button class="btn btn-primary btn-log text-uppercase fw-bold" type="submit" [routerLink]="['/auth']">
+                Выйти
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
