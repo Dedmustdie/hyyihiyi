@@ -3,6 +3,7 @@ import {IProduct} from "../../models/product";
 import {catchError, tap} from "rxjs";
 import {CatalogService} from "../../services/catalog.service";
 import {CartService} from "../../services/cart.service";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -12,28 +13,33 @@ export class ProductComponent {
   @Input() product: IProduct = {id: '', name: '', price: 0, description: '', image: '', count: 0}
   isListVisible: boolean = false
   details = false
-  user_id = '2'
   loading = false
   isAlreadyInCart: boolean = true
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService, private router: Router) {
   }
   toggleList() {
     this.isListVisible = !this.isListVisible;
   }
   addToCart() {
     this.loading = true
-
-    this.cartService.add(this.user_id, this.product.id, 1)
-      .pipe(
-        tap(response => {
-          this.loading = false
-        }),
-        catchError(error => {
-          // Handle the error
-          console.error('Add failed', error);
-          throw error; // Rethrow the error to propagate it
-        })
-      )
-      .subscribe();
+    const userId = localStorage.getItem('user_id')
+    if (userId) {
+      this.cartService.add("1", this.product.id, 1)
+        .pipe(
+          tap(response => {
+            this.loading = false
+          }),
+          catchError(error => {
+            if (error.status == 401) {
+              this.router.navigate(['/user']);
+            }
+            console.error('Add failed', error.status);
+            throw error;
+          })
+        )
+        .subscribe();
+    } else {
+      this.router.navigate(['/user']);
+    }
   }
 }

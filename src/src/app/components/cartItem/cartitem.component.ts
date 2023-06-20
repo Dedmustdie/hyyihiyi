@@ -5,6 +5,8 @@ import {catchError, Observable, tap} from "rxjs";
 import {ICartProduct} from "../../models/cartProduct";
 import {CartService} from "../../services/cart.service";
 import {CatalogService} from "../../services/catalog.service";
+import {globalScriptsByBundleName} from "@angular-devkit/build-angular/src/webpack/utils/helpers";
+import {LogicalFileSystem} from "@angular/compiler-cli";
 
 @Component({
   selector: 'app-cart_item',
@@ -26,22 +28,34 @@ export class CartItemComponent {
       count: 0
     }, count: 1
   }
+  @Output() selectedCartItemsChange = new EventEmitter<ICartItem[]>()
+  @Input() selectedCartItems: ICartItem[] = []
   checkboxValue: boolean = false
   @Output() increasePrice = new EventEmitter<number>()
   @Output() decreasePrice = new EventEmitter<number>()
   @Output() setPrice = new EventEmitter<number>()
   @Input() refreshCartItems: (() => void)
   price: number = 0
+  @Output() priceChange = new EventEmitter<number>()
 
   constructor(private cartService: CartService, catalogService: CatalogService) {
     this.refreshCartItems = () => {}
   }
 
   onCheckboxChange() {
+    console.log(this.selectedCartItems)
     if (this.checkboxValue) {
+      console.log("ДОБАВИТЬ")
       this.increasePrice.emit(this.price);
+      this.selectedCartItems.push(this.cartItem)
+      console.log(this.selectedCartItems)
+
     } else {
+      console.log("УДАЛИТЬ")
       this.decreasePrice.emit(this.price);
+      this.selectedCartItems = this.selectedCartItems.filter(item => item != this.cartItem)
+      console.log(this.selectedCartItems)
+
     }
   }
 

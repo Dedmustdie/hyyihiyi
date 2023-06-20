@@ -13,6 +13,7 @@ export class ProductsComponent implements OnInit {
   products: IProduct[] = []
   products$: Observable<IProduct[]> = new Observable<IProduct[]>()
 
+
   constructor(private catalogService: CatalogService) {
   }
 

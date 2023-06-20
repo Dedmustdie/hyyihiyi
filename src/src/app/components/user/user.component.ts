@@ -1,13 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {finalize, Observable, Subscription, switchMap, tap} from "rxjs";
-import {OrderService} from "../../services/order.service";
-import {IOrder} from "../../models/order";
-import {IProduct} from "../../models/product";
+import {tap} from "rxjs";
 // import {Catalog2Service} from "../../services/catalog2.service";
-import {IOrderItem} from "../../models/orderItem";
-import {CartService} from "../../services/cart.service";
-import {ICartItem} from "../../models/cartItem";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-user',
@@ -16,9 +11,31 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class UserComponent implements OnInit {
   isAuth: boolean = false
-  ngOnInit(): void {
 
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {
   }
+
+  logout(): void {
+    localStorage.clear()
+    this.isAuth = false
+  }
+
+  ngOnInit(): void {
+    const token = localStorage.getItem('auth_token')
+    if (token) {
+      this.userService.checkJWT(token)
+      this.userService.checkJWT(token)
+        .pipe(tap((jwt) => {
+          // this.router.navigate(['/catalog']);
+        })).subscribe((isJwt) => {
+          this.isAuth = isJwt
+      })
+    }
+  }
+
   // login() {
   //
   // }

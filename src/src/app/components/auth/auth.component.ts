@@ -8,6 +8,7 @@ import {CartService} from "../../services/cart.service";
 import {ICartItem} from "../../models/cartItem";
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {IJWT} from "../../models/jwt";
 
 @Component({
   selector: 'app-auth',
@@ -19,10 +20,20 @@ export class AuthComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {}
-  jwt$: Observable<string> = new Observable<string>()
+  jwt$: Observable<IJWT> = new Observable<IJWT>()
   isInvalidUsername: boolean = true
   isInvalidPassword: boolean = true
   ngOnInit(): void {
+    const token = localStorage.getItem('auth_token')
+    if (token) {
+      this.userService.checkJWT(token)
+        .pipe(tap((jwt) => {
+        })).subscribe((isJwt) => {
+          if (!isJwt) {
+            this.router.navigate(['/user']);
+          }
+      })
+    }
   }
   loading = false
   username: string = ''
@@ -30,13 +41,12 @@ export class AuthComponent implements OnInit {
 
   login() {
     this.loading = true
-    console.log("ewwewdwefwfwef");
-    console.log(this.username)
-    console.log(this.password)
     this.jwt$ = this.userService.getJWT(this.username, this.password)
       .pipe(tap((jwt) => {
-
-        localStorage.setItem('auth_token', jwt)
+        console.log("dwdwe")
+        console.log(jwt.user_id)
+        localStorage.setItem('auth_token', jwt.token)
+        localStorage.setItem('user_id', jwt.user_id)
         this.loading = false
         this.router.navigate(['/']);
       }))

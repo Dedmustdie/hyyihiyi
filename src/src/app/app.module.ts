@@ -11,7 +11,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ErrorService} from "./services/error.service";
 import {ErrorComponent} from "./components/error/error.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CrmService} from "./services/crm.service";
 import {CatalogService} from "./services/catalog.service";
 import {RouterModule, Routes} from "@angular/router";
 import {NotfoundComponent} from "./components/notfound/notfound.component";
@@ -67,7 +66,6 @@ const appRoutes: Routes = [
   ],
   providers: [
     ErrorService,
-    CrmService,
     CatalogService,
     OrderService,
     CartService,

@@ -16,35 +16,36 @@ export class OrdersComponent implements OnInit {
   loading = false
   products$: Observable<IProduct[]> = new Observable<IProduct[]>()
   orders$: Observable<IOrder[]> = new Observable<IOrder[]>()
-  userId = "1"
 
   constructor(private orderService: OrderService, private catalogService: CatalogService) {
   }
 
+
   ngOnInit(): void {
     this.loading = true
-    this.orders$ = this.orderService.getAll(this.userId)
-      .pipe(tap(() => {
-        this.loading = false
-      }))
-
-    this.orders$.subscribe((orders) => {
-      const uniqueProductsId: string[] = []
-
-      orders.forEach((order: IOrder) => {
-        order.items.forEach((item: IOrderItem) => {
-          if (!uniqueProductsId.includes(item.product_id)) {
-            uniqueProductsId.push(item.product_id);
-          }
-        });
-      });
-      console.log(uniqueProductsId)
-
-      this.products$ = this.catalogService.getSome(uniqueProductsId)
+    const userId = localStorage.getItem('user_id')
+    if (userId) {
+      this.orders$ = this.orderService.getAll(userId)
         .pipe(tap(() => {
           this.loading = false
         }))
-      console.log(orders);
-    });
+
+      this.orders$.subscribe((orders) => {
+        const uniqueProductsId: string[] = []
+
+        orders.forEach((order: IOrder) => {
+          order.items.forEach((item: IOrderItem) => {
+            if (!uniqueProductsId.includes(item.product_id)) {
+              uniqueProductsId.push(item.product_id);
+            }
+          });
+        });
+
+        this.products$ = this.catalogService.getSome(uniqueProductsId)
+          .pipe(tap(() => {
+            this.loading = false
+          }))
+      });
+    }
   }
 }

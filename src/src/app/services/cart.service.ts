@@ -15,7 +15,7 @@ import {ICartItem} from "../models/cartItem";
   }
 
   getAll(userId: string): Observable<ICartItem[]> {
-    return this.http.get<ICartItem[]>(`/api/cart/all?user_id=${userId}`).pipe(
+    return this.http.get<ICartItem[]>(`/api/cart/some?user_id=${userId}`).pipe(
       catchError(this.errorHandler.bind(this))
     )
   }
@@ -32,7 +32,9 @@ import {ICartItem} from "../models/cartItem";
       product_id: productId,
       count: count
     }).pipe(
-      catchError(this.errorHandler.bind(this))
+      catchError((error) => {
+        return throwError(error); // Пробрасывание ошибки дальше
+      })
     )
   }
 
